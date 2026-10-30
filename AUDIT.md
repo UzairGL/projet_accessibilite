@@ -169,3 +169,16 @@ Au clavier dans le navigateur :
 5. Envoi vide : trois erreurs, focus sur le sujet. Question avec seulement des espaces : « Écrivez votre question. ». Échap et « Annuler » ferment sans rien envoyer.
 
 Le choix du sujet au clavier utilise le comportement natif du `select`. Pas testé avec un vrai lecteur d’écran.
+
+## Mini-test
+
+Fichier : `src/__tests__/Composant.test.tsx`. Résultat de `npm test -- --run` : 4 tests passent (les 3 de démarrage + le mini-test).
+
+Le test affiche l’application avec `render(<App />)` et simule les actions avec `userEvent`, en cherchant les éléments par rôle et par nom comme en séance 3 :
+
+1. Ouvre « Poser une question sur Une tasse en céramique » et retrouve le dialogue par son nom.
+2. Choisit « Le matériel à apporter » avec `selectOptions` et écrit une question.
+3. Laisse l’adresse vide et clique sur « Envoyer ».
+4. Vérifie que l’adresse a `aria-invalid="true"` et le message d’erreur comme description, que la modale est toujours ouverte, que le sujet (`materiel`) et la question sont gardés, et qu’il n’y a pas de confirmation.
+5. Saisit une adresse valide et renvoie.
+6. Vérifie que la modale est fermée et que la confirmation contient « Une tasse en céramique » et « Le matériel à apporter ».
