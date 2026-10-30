@@ -149,7 +149,26 @@ Vérification : les trois images ont `alt=""` et ne sont plus dans l’arbre d�
 
 ## Composant créé
 
-...
+Fichiers : `src/components/QuestionDialog.tsx` et `src/App.tsx`. Pas de changement CSS, on utilise les classes déjà prévues.
+
+- **Bon atelier** : chaque carte a un bouton « Poser une question sur {titre} » (via `extraAction`), donc un nom différent par atelier, même pour l’atelier complet. La confirmation utilise le `workshopId` renvoyé par `readRequest`.
+- **Modale** : `<dialog>` natif avec `showModal()`, donc le Tab reste dans la fenêtre. Le dialogue est nommé par son titre (`aria-labelledby`) et le focus va sur ce titre à l’ouverture (`tabIndex={-1}`).
+- **Fermer** : Échap, la croix (`aria-label="Fermer"`) ou « Annuler ». Rien n’est envoyé et le focus revient sur le bouton qui a ouvert la fenêtre.
+- **Formulaire** : un `<label>` visible par champ avec « (obligatoire) ». `select` natif avec un premier choix vide « Choisissez un sujet », donc rien n’est présélectionné. Adresse en `type="email"`.
+- **Erreurs** : `noValidate` + `readRequest`. Si l’envoi échoue, la fenêtre reste ouverte, le focus va sur le premier champ en erreur, qui a `aria-invalid="true"` et son message relié par `aria-describedby`. Les saisies sont gardées.
+- **Confirmation** : après un envoi valide, la fenêtre se ferme, le focus revient sur le bouton et « Question envoyée pour « Une tasse en céramique ». Sujet : Le matériel à apporter. » s’affiche dans la région `role="status"` de la préinscription. Pas d’adresse dans le message.
+
+### Vérifications
+
+Au clavier dans le navigateur :
+
+1. Entrée sur « Poser une question sur Une tasse en céramique » : la modale s’ouvre, focus sur le titre, aucun sujet choisi.
+2. Tab en boucle : croix, sujet, adresse, question, « Envoyer », « Annuler », puis retour à la croix sans sortir.
+3. Sujet « Le matériel à apporter », une question, adresse vide, « Envoyer » : la fenêtre reste ouverte, le focus va sur l’adresse avec son erreur, le sujet et la question sont gardés, pas de confirmation.
+4. Adresse valide puis Entrée : la fenêtre se ferme, le focus revient sur le bouton, la confirmation donne le bon atelier et le bon sujet.
+5. Envoi vide : trois erreurs, focus sur le sujet. Question avec seulement des espaces : « Écrivez votre question. ». Échap et « Annuler » ferment sans rien envoyer.
+
+Le choix du sujet au clavier utilise le comportement natif du `select`. Pas testé avec un vrai lecteur d’écran.
 
 ## Mini-test
 
