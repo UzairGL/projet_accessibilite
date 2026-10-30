@@ -2,7 +2,7 @@
 
 ## Binôme et environnement
 
-- Membres : Noah Contal, Théo Gile
+- Membres : Noah Contal, Théo Gille
 - Navigateur et version : Firefox 159.0 (macOS).
 
 ## Élément vérifié et conservé

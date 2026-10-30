@@ -1,3 +1,8 @@
+# Binôme
+
+- Noah CONTAL
+- Théo GILLE
+
 # AtelierLocal — Projet final
 
 Application React de démonstration pour le projet d’accessibilité. Commencez par `ENONCE.pdf` ou `ENONCE.md`. Le projet fourni contient des défauts intentionnels ; les tests de démarrage ne garantissent pas son accessibilité.
