@@ -169,7 +169,3 @@ Au clavier dans le navigateur :
 5. Envoi vide : trois erreurs, focus sur le sujet. Question avec seulement des espaces : « Écrivez votre question. ». Échap et « Annuler » ferment sans rien envoyer.
 
 Le choix du sujet au clavier utilise le comportement natif du `select`. Pas testé avec un vrai lecteur d’écran.
-
-## Mini-test
-
-...
