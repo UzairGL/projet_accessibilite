@@ -36,23 +36,23 @@ export default function App() {
         <section className="catalogue" id="catalogue" aria-labelledby="catalogue-title">
           <div className="section-heading"><div><p className="eyebrow">Le programme</p><h2 id="catalogue-title">Les prochains ateliers</h2></div><span className="count" role="status" aria-label="Résultats de recherche" aria-atomic="true">{visible.length} atelier{visible.length > 1 ? "s" : ""}</span></div>
           <div className="search-area">
-            <p className="search-label">Rechercher un atelier</p>
-            <input type="search" id="workshop-search" value={query} onChange={event => setQuery(event.target.value)} />
-            <p className="search-help">Saisissez un titre ou une ville.</p>
+            <label className="search-label" htmlFor="workshop-search">Rechercher un atelier</label>
+            <input type="search" id="workshop-search" aria-describedby="search-help" value={query} onChange={event => setQuery(event.target.value)} />
+            <p className="search-help" id="search-help">Saisissez un titre ou une ville.</p>
           </div>
           {visible.length > 0 ? (
             <div className="workshop-grid">
               {visible.map(workshop => <WorkshopCard key={workshop.id} workshop={workshop} onReserve={reserve} />)}
             </div>
           ) : <p className="empty-state">Aucun atelier ne correspond. Essayez un autre titre ou une autre ville.</p>}
+          <div className="registration-result">
+            <p className={notice ? "notice" : "notice-empty"} role="status" aria-atomic="true">{notice}</p>
+          </div>
         </section>
         <section className="how-it-works" id="infos-pratiques" aria-labelledby="how-title">
           <p className="eyebrow">À votre rythme</p><h2 id="how-title">Une découverte, simplement.</h2>
           <div className="how-grid"><div><span>01</span><h3>Choisissez votre atelier</h3><p>Retrouvez le lieu, la durée et le tarif dans le programme.</p></div><div><span>02</span><h3>Préparez votre venue</h3><p>Consultez les détails pour savoir ce qui est fourni et ce qu’il faut apporter.</p></div><div><span>03</span><h3>Prenez le temps de créer</h3><p>Les ateliers présentés ici sont fictifs. Toutes les actions sont des démonstrations locales.</p></div></div>
         </section>
-        <div className="registration-result">
-          <p className={notice ? "notice" : "notice-empty"}>{notice}</p>
-        </div>
       </main>
       <footer><a className="brand" href="#accueil">Atelier<span>Local</span></a><p>Application pédagogique · Aucun envoi ni paiement réel.</p></footer>
     </>
